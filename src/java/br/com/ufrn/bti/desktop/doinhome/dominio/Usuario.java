@@ -1,4 +1,4 @@
-package br.com.ufrn.bti.desktop.doinhome.domain;
+package br.com.ufrn.bti.desktop.doinhome.dominio;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

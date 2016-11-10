@@ -27,6 +27,7 @@ public class Usuario {
 	@JoinColumn(name = "id_pessoa")
 	private Pessoa pessoa;
 	
+	
 	public Usuario(String login, String senha) {
 		super();
 		this.login = login;

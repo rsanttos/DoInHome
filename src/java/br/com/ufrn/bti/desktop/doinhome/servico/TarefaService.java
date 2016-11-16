@@ -1,4 +1,4 @@
-package br.com.ufrn.bti.desktop.doinhome.service;
+package br.com.ufrn.bti.desktop.doinhome.servico;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +9,7 @@ import br.com.ufrn.bti.desktop.doinhome.dominio.Tarefa;
 import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
 
 public class TarefaService {
+	
 	private TarefaDAO tarefaDao;
 	
 	public TarefaService(){

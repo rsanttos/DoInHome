@@ -2,6 +2,7 @@ package br.com.ufrn.bti.desktop.doinhome.dominio;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,9 @@ public class Tarefa {
 	private Date dataFinalizacao;
 	
 	private int valor;
+	
+	@Column(name = "status", nullable=true) 
+	private boolean ativa;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "id_usuario")
@@ -101,5 +105,14 @@ public class Tarefa {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public boolean isAtiva() {
+		return ativa;
+	}
+
+	public void setAtiva(boolean ativa) {
+		this.ativa = ativa;
+	}
+
 	
 }

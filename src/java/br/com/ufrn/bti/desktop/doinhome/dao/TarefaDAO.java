@@ -11,6 +11,11 @@ import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
 import br.com.ufrn.bti.desktop.doinhome.util.HibernateUtil;
 
 public class TarefaDAO extends GenericDAO {
+	
+	public TarefaDAO(){
+		
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Tarefa> listar(){
 		List<Tarefa> listaTarefas = new ArrayList<Tarefa>();

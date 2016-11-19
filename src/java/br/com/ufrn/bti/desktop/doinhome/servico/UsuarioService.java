@@ -38,4 +38,18 @@ public class UsuarioService {
 		usuario = usuarioDao.buscarPeloLogin(u.getLogin());
 		return usuario;
 	}
+	
+	public boolean autenticaUsuario(Usuario usuario){
+		Usuario usuarioAux = new Usuario();
+		usuarioAux = usuarioDao.buscarPeloLogin(usuario.getLogin());
+		if(usuarioAux != null){
+			if(usuario.getSenha() == usuarioAux.getSenha()){
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 }

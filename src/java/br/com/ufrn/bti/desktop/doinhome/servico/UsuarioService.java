@@ -43,7 +43,7 @@ public class UsuarioService {
 		Usuario usuarioAux = new Usuario();
 		usuarioAux = usuarioDao.buscarPeloLogin(usuario.getLogin());
 		if(usuarioAux != null){
-			if(usuario.getSenha() == usuarioAux.getSenha()){
+			if(usuario.getSenha().equals(usuarioAux.getSenha())){
 				return true;
 			} else {
 				return false;

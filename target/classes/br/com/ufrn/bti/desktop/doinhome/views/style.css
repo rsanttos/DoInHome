@@ -1,0 +1,12 @@
+.sub-list {
+	-fx-background-color: #fff;
+}
+
+.background {
+	-fx-background-color: #1E8BC3;
+}
+
+.clear-background {
+	-fx-background-color: #fff;	
+	-fx-border-color: #2574A9;
+}

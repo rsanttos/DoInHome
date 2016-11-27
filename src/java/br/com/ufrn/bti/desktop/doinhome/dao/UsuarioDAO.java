@@ -3,6 +3,8 @@ package br.com.ufrn.bti.desktop.doinhome.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Query;
 
 import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
@@ -26,7 +28,12 @@ public class UsuarioDAO extends GenericDAO {
         session.beginTransaction();
 		Query q = session.createQuery("SELECT f FROM Usuario f WHERE f.id = :id");
         q.setInteger("id", id);
-		usuario = (Usuario) q.getSingleResult(); 
+        try {			
+        	usuario = (Usuario) q.getSingleResult(); 
+		} catch (NoResultException e) {
+			System.out.println("Nenhum usuário encontrado com esse id...");
+			usuario = null;
+		}
 		session.close(); 
 		return usuario;
 	}
@@ -38,7 +45,12 @@ public class UsuarioDAO extends GenericDAO {
         session.beginTransaction();
 		Query q = session.createQuery("SELECT f FROM Usuario f WHERE f.login = :login");
         q.setString("login", login);
-		usuario = (Usuario) q.getSingleResult(); 
+        try {
+        	usuario = (Usuario) q.getSingleResult(); 
+        } catch (NoResultException e) {
+        	System.out.println("Nenhum usuário encontrado com esse login...");
+        	usuario = null;
+		}
 		session.close();
 		return usuario;
 	}

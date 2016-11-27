@@ -2,6 +2,7 @@ package br.com.ufrn.bti.desktop.doinhome.views;
 
 import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
 import br.com.ufrn.bti.desktop.doinhome.servico.UsuarioService;
+import br.com.ufrn.bti.desktop.doinhome.util.Alerta;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -27,22 +28,10 @@ public class LoginViewController {
 		Usuario usuario = new Usuario(this.tfUserName.getText(), this.pfPassword.getText());
 		boolean autentica = usuarioService.autenticaUsuario(usuario);
 		
-		if(autentica == true){
-			System.out.println("aeho");
-			
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Login");
-			alert.setHeaderText(null);
-			alert.setContentText("Usuário logado com sucesso!");
-
-			alert.showAndWait();
+		if(autentica == true){	
+			Alerta.mostrarAlertaSimples("Login", "Usuário logado com sucesso!");
 		} else {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Login");
-			alert.setHeaderText(null);
-			alert.setContentText("Usuário e/ou senha incorretos");
-
-			alert.showAndWait();
+			Alerta.mostrarAlertaSimples("Login", "Usuário e/ou senha incorretos!");
 		}
 	}
 }

@@ -31,18 +31,18 @@ public class LoginViewController {
 			System.out.println("aeho");
 			
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Information Dialog");
-			alert.setHeaderText("Look, an Information Dialog");
-			alert.setContentText("I have a great message for you!");
+			alert.setTitle("Login");
+			alert.setHeaderText(null);
+			alert.setContentText("Usuário logado com sucesso!");
 
 			alert.showAndWait();
 		} else {
-			System.out.println("pqp");
-		}
-		
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Login");
+			alert.setHeaderText(null);
+			alert.setContentText("Usuário e/ou senha incorretos");
 
-		System.out.println(autentica);
-		
-		System.out.println(usuario.toString());
+			alert.showAndWait();
+		}
 	}
 }

@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class TarefasUsuarioListagemController {
+public class TarefasUsuarioListagemViewController {
 	private ObservableList<Tarefa> tarefasList = FXCollections.observableArrayList();
 	private UsuarioService usuarioService = new UsuarioService();
 	private TarefaService tarefaService =  new TarefaService();
@@ -29,7 +29,7 @@ public class TarefasUsuarioListagemController {
 	private TableColumn<Tarefa, String> tcAcoesTarefa;
 	
 
-	public TarefasUsuarioListagemController() {
+	public TarefasUsuarioListagemViewController() {
 		tarefasList = FXCollections.observableList(tarefaService.listarTarefasPendentesUsuario(this.containerController.getUsuarioLogado()));
 	}
 	

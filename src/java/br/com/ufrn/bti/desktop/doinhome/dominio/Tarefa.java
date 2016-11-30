@@ -13,6 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name="tarefa", schema="public")
@@ -53,6 +59,10 @@ public class Tarefa {
 	public int getId() {
 		return id;
 	}
+	
+	public ObjectProperty<Integer> getIdProperty() {
+		return new SimpleIntegerProperty(this.id).asObject();
+	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -61,7 +71,11 @@ public class Tarefa {
 	public String getDescricao() {
 		return descricao;
 	}
-
+	
+	public StringProperty getDescricaoProperty() {
+		return new SimpleStringProperty(this.descricao);
+	}
+	
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
@@ -70,12 +84,20 @@ public class Tarefa {
 		return dataCriacao;
 	}
 
+	public ObjectProperty<Date> getDataCriacaoProperty() {
+		return new SimpleObjectProperty<Date>(this.dataCriacao);
+	}
+	
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 
 	public Date getDataLimite() {
 		return dataLimite;
+	}
+	
+	public ObjectProperty<Date> getDataLimiteProperty() {
+		return new SimpleObjectProperty<Date>(this.dataLimite);
 	}
 
 	public void setDataLimite(Date dataLimite) {
@@ -85,6 +107,10 @@ public class Tarefa {
 	public Date getDataFinalizacao() {
 		return dataFinalizacao;
 	}
+	
+	public ObjectProperty<Date> getDataFinalizacaoProperty() {
+		return new SimpleObjectProperty<Date>(this.dataFinalizacao);
+	}
 
 	public void setDataFinalizacao(Date dataFinalizacao) {
 		this.dataFinalizacao = dataFinalizacao;
@@ -92,6 +118,10 @@ public class Tarefa {
 
 	public int getValor() {
 		return valor;
+	}
+	
+	public ObjectProperty<Integer> getValorProperty() {
+		return new SimpleIntegerProperty(this.valor).asObject();
 	}
 
 	public void setValor(int valor) {

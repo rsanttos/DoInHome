@@ -2,6 +2,7 @@ package br.com.ufrn.bti.desktop.doinhome.views;
 
 import java.util.Date;
 
+import br.com.ufrn.bti.desktop.doinhome.dominio.Pessoa;
 import br.com.ufrn.bti.desktop.doinhome.dominio.Tarefa;
 import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
 import br.com.ufrn.bti.desktop.doinhome.servico.TarefaService;
@@ -20,7 +21,7 @@ public class TarefasUsuarioListagemViewController {
 	private ContainerController containerController = new ContainerController();
 	
 	@FXML
-	private TableView<Tarefa> tvTarefas;
+	private TableView<Tarefa> tvTarefasUsuario;
 	@FXML
 	private TableColumn<Tarefa, String> tcDescricaoTarefa;
 	@FXML 
@@ -30,7 +31,25 @@ public class TarefasUsuarioListagemViewController {
 	
 
 	public TarefasUsuarioListagemViewController() {
-		tarefasList = FXCollections.observableList(tarefaService.listarTarefasPendentesUsuario(this.containerController.getUsuarioLogado()));
+//		tarefasList = FXCollections.observableList(tarefaService.listarTarefasPendentesUsuario(this.containerController.getUsuarioLogado()));
+		Pessoa p = new Pessoa();
+		Usuario u = new Usuario();
+		Tarefa t = new Tarefa();
+		
+		p.setNome("Ramon");
+		p.setSexo('M');
+		p.setCpf("10904368408");
+		p.setDataNascimento(new Date());
+		
+		u.setId(2);
+		u.setLogin("ramon");
+		u.setPessoa(p);
+		
+		tarefasList = FXCollections.observableList(tarefaService.listarTarefasPendentesUsuario(u));		
+		
+		tvTarefasUsuario = new TableView<Tarefa>();
+		tcDescricaoTarefa = new TableColumn<>();
+		tcDataFimTarefa = new TableColumn<>();
 	}
 	
 	public void setUsuarioLogado(Usuario u) {
@@ -40,11 +59,11 @@ public class TarefasUsuarioListagemViewController {
 	@FXML
     private void initialize() {
 		tcDescricaoTarefa.setCellValueFactory(cellData -> cellData.getValue().getDescricaoProperty());
-		tcDataFimTarefa.setCellValueFactory(cellData -> cellData.getValue().getDataFinalizacaoProperty());
-		System.out.println("Inicializando...");
+		tcDataFimTarefa.setCellValueFactory(cellData -> cellData.getValue().getDataLimiteProperty());
 	}
 	
 	public void setContainerController(ContainerController c) {
 		this.containerController = c;
+		tvTarefasUsuario.setItems(tarefasList);
 	}
 }

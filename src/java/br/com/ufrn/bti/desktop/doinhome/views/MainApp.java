@@ -1,5 +1,6 @@
 package br.com.ufrn.bti.desktop.doinhome.views;
 
+import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,13 +8,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
-	private Stage primaryStage;
 	private AnchorPane container;
+	public static Stage primaryStage;
+	public static Usuario usuarioLogado;
 
 	@Override
-	public void start(Stage primaryStage) {
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("DoInHome");
+	public void start(Stage s) {
+		primaryStage = s;
+		primaryStage.setTitle("DoInHome");
 		
 		initRootLayout();
 	}

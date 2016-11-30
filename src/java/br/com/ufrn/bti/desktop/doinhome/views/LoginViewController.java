@@ -9,6 +9,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LoginViewController {
 	@FXML
@@ -28,8 +29,11 @@ public class LoginViewController {
 		Usuario usuario = new Usuario(this.tfUserName.getText(), this.pfPassword.getText());
 		boolean autentica = usuarioService.autenticaUsuario(usuario);
 		
-		if(autentica == true){	
-			Alerta.mostrarAlertaSimples("Login", "Usuário logado com sucesso!");
+		if(autentica == true){			
+			ContainerController c = new ContainerController();
+			c.setUsuarioLogado(usuario);
+			c.start(new Stage());
+			MainApp.primaryStage.close();
 		} else {
 			Alerta.mostrarAlertaSimples("Login", "Usuário e/ou senha incorretos!");
 		}

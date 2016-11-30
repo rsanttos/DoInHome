@@ -13,6 +13,8 @@ public class TarefasCadastroEdicaoViewController {
 	@FXML
 	private ComboBox<Usuario> cbTarefaResponsavel;
 	@FXML
+	private ComboBox<String> cbTarefaDificuldade;
+	@FXML
 	private DatePicker dpTarefaPrazoFinal;
 	@FXML 
 	private Button btTarefaSalvar;

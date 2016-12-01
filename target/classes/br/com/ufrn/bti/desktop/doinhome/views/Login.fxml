@@ -11,9 +11,9 @@
    <children>
       <Pane layoutX="169.0" layoutY="77.0" prefHeight="247.0" prefWidth="263.0" styleClass="clear-background">
          <children>
-            <TextField fx:id="tfUserName" layoutX="46.0" layoutY="94.0" promptText="Email" text="ramon" />
+            <TextField fx:id="tfUserName" layoutX="46.0" layoutY="94.0" promptText="Login" />
             <Label layoutX="92.0" layoutY="45.0" text="Do In Home" />
-            <PasswordField fx:id="pfPassword" layoutX="46.0" layoutY="133.0" promptText="Senha" text="123asd" />
+            <PasswordField fx:id="pfPassword" layoutX="46.0" layoutY="133.0" promptText="Senha" />
             <Button fx:id="btLogin" layoutX="100.0" layoutY="181.0" mnemonicParsing="false" onMouseClicked="#login" text="Entrar" />
          </children>
       </Pane>

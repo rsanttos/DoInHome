@@ -38,6 +38,12 @@ public class UsuarioService {
 		usuario = usuarioDao.buscarPeloLogin(u.getLogin());
 		return usuario;
 	}
+
+	public Usuario buscarPeloLogin(String login){
+		Usuario usuario = new Usuario();
+		usuario = usuarioDao.buscarPeloLogin(login);
+		return usuario;
+	}
 	
 	public boolean autenticaUsuario(Usuario usuario){
 		Usuario usuarioAux = new Usuario();

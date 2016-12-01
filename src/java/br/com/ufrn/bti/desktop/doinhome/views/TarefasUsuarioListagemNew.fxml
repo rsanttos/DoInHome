@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ufrn.bti.desktop.doinhome.views.TarefasUsuarioListagemViewController">
+   <children>
+      <TableView fx:id="tvTarefasUsuario" layoutX="14.0" layoutY="14.0" prefHeight="350.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="tcDescricaoTarefa" prefWidth="300.0" text="Descrição" />
+          <TableColumn fx:id="tcDataFimTarefa" prefWidth="104.0" text="Fim" />
+            <TableColumn fx:id="tcAcoesTarefa" prefWidth="167.0" text="Ações" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,51 +1,85 @@
 package br.com.ufrn.bti.desktop.doinhome.main;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.IOException;
 
-import br.com.ufrn.bti.desktop.doinhome.dao.PessoaDAO;
-import br.com.ufrn.bti.desktop.doinhome.dao.TarefaDAO;
-import br.com.ufrn.bti.desktop.doinhome.dao.UsuarioDAO;
-import br.com.ufrn.bti.desktop.doinhome.dominio.Pessoa;
-import br.com.ufrn.bti.desktop.doinhome.dominio.Tarefa;
 import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
+import br.com.ufrn.bti.desktop.doinhome.views.LoginViewController;
+import br.com.ufrn.bti.desktop.doinhome.views.TarefasUsuarioListagemViewController;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
 
-	public static void main(String[] args) throws ParseException {
-		Pessoa p = new Pessoa();
-		Usuario u = new Usuario();
-		Tarefa t = new Tarefa();
-		
-		p.setNome("Ramon");
-		p.setSexo('M');
-		p.setCpf("10904368408");
-		p.setDataNascimento(new Date());
-		
-		u.setLogin("ramon");
-		u.setPessoa(p);
-		
-		String dataLimite = "2016-12-15";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		Date d = sdf.parse(dataLimite);
-		
-		t.setDescricao("Tarefa Legal");
-		t.setAtiva(true);
-		t.setDataCriacao(new Date());
-		t.setDataLimite(d);
-		t.setUsuario(u);
-		t.setValor(50);
-		
-		PessoaDAO pDao = new PessoaDAO();
-		UsuarioDAO uDao = new UsuarioDAO();
-		TarefaDAO tDao = new TarefaDAO();
-		
-//		pDao.salvarOuAtualizar(p);
-		
-//		uDao.salvarOuAtualizar(u);
-		
-		tDao.salvarOuAtualizar(t);		
+	private Stage primaryStage;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stubargs) {
+		launch(args);
 	}
 
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		// TODO Auto-generated method stub
+
+		this.primaryStage = primaryStage;
+		this.primaryStage.setTitle("DoInHome");
+		showLogin();
+	}
+
+	public void showLogin(){
+		try {
+			// Carrega o arquivo fxml e cria um novo stage para a janela popup.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("../views/Login.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Cria o palco dialogStage.
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("DoInHome - Login");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			// Define a pessoa no controller.
+			LoginViewController controller = loader.getController();
+			controller.setStage(dialogStage);
+			controller.setMain(this);
+
+			// Mostra a janela e espera até o usuário fechar.
+			dialogStage.showAndWait();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showListagemTarefasUsuario(Usuario usuarioLogado){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("../views/TarefasUsuarioListagemNew.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Cria o palco dialogStage.
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("DoInHome - Veja suas tarefas");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+			
+			TarefasUsuarioListagemViewController controller = new TarefasUsuarioListagemViewController(usuarioLogado);
+			controller = loader.getController();
+			controller.setUsuarioLogado(usuarioLogado);
+			controller.setStage(dialogStage);
+			controller.setMain(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

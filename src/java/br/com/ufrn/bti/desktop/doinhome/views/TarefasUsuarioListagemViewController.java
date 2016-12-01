@@ -30,28 +30,16 @@ public class TarefasUsuarioListagemViewController {
 	private TableColumn<Tarefa, String> tcAcoesTarefa;
 	
 
-	public TarefasUsuarioListagemViewController() {
-//		tarefasList = FXCollections.observableList(tarefaService.listarTarefasPendentesUsuario(this.containerController.getUsuarioLogado()));
-		Pessoa p = new Pessoa();
-		Usuario u = new Usuario();
-		Tarefa t = new Tarefa();
-		
-		p.setNome("Ramon");
-		p.setSexo('M');
-		p.setCpf("10904368408");
-		p.setDataNascimento(new Date());
-		
-		u.setId(2);
-		u.setLogin("ramon");
-		u.setPessoa(p);
-		
-		tarefasList = FXCollections.observableList(tarefaService.listarTarefasPendentesUsuario(u));		
-		
+	public TarefasUsuarioListagemViewController() {				
 		tvTarefasUsuario = new TableView<Tarefa>();
 		tcDescricaoTarefa = new TableColumn<>();
 		tcDataFimTarefa = new TableColumn<>();
 	}
 	
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
 	public void setUsuarioLogado(Usuario u) {
 		this.usuarioLogado = u;
 	}
@@ -65,5 +53,9 @@ public class TarefasUsuarioListagemViewController {
 	public void setContainerController(ContainerController c) {
 		this.containerController = c;
 		tvTarefasUsuario.setItems(tarefasList);
+	}
+	
+	public void populaTabela(){
+		tarefasList = FXCollections.observableList(tarefaService.listarTarefasPendentesUsuario(this.getUsuarioLogado()));
 	}
 }

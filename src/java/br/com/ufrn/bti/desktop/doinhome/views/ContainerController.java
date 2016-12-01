@@ -3,6 +3,7 @@ package br.com.ufrn.bti.desktop.doinhome.views;
 import java.io.IOException;
 
 import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -13,7 +14,7 @@ public class ContainerController {
 	private BorderPane container;
 	private Usuario usuarioLogado;
 	
-	public void start(Stage stage) {
+	public void start(Stage stage, Usuario usuarioLogado) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("Container.fxml"));
@@ -24,7 +25,7 @@ public class ContainerController {
 			stage.setTitle("DoInHome");
 			stage.show();
 			
-			mostrarListaTarefasUsuario();
+			mostrarListaTarefasUsuario(usuarioLogado);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -38,14 +39,21 @@ public class ContainerController {
 		return usuarioLogado;
 	}
 	
-	public void mostrarListaTarefasUsuario() throws IOException{
+	public void mostrarListaTarefasUsuario(Usuario usuarioLogado) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ContainerController.class.getResource("TarefasUsuarioListagem.fxml"));
         AnchorPane conteudo = (AnchorPane) loader.load();
         container.setCenter(conteudo);
         
         TarefasUsuarioListagemViewController tarefasController = loader.getController();
+        tarefasController.setUsuarioLogado(usuarioLogado);
+        tarefasController.populaTabela();
         tarefasController.setContainerController(this);
 	}
 	
+	
+	@FXML
+	public void mostrarFormularioDeNovaTarefa(){
+		
+	}
 }

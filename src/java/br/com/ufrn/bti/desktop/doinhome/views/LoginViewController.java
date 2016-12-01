@@ -4,8 +4,6 @@ import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
 import br.com.ufrn.bti.desktop.doinhome.servico.UsuarioService;
 import br.com.ufrn.bti.desktop.doinhome.util.Alerta;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -29,10 +27,11 @@ public class LoginViewController {
 		Usuario usuario = new Usuario(this.tfUserName.getText(), this.pfPassword.getText());
 		boolean autentica = usuarioService.autenticaUsuario(usuario);
 		
-		if(autentica == true){			
+		if(autentica == true){
+			usuario = usuarioService.buscarPeloLogin(usuario);
 			ContainerController c = new ContainerController();
 			c.setUsuarioLogado(usuario);
-			c.start(new Stage());
+			c.start(new Stage(), usuario);
 			MainApp.primaryStage.close();
 		} else {
 			Alerta.mostrarAlertaSimples("Login", "Usuário e/ou senha incorretos!");

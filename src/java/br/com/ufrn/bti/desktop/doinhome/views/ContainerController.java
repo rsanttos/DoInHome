@@ -44,7 +44,7 @@ public class ContainerController {
         AnchorPane conteudo = (AnchorPane) loader.load();
         container.setCenter(conteudo);
         
-        TarefasUsuarioListagemController tarefasController = loader.getController();
+        TarefasUsuarioListagemViewController tarefasController = loader.getController();
         tarefasController.setContainerController(this);
 	}
 	

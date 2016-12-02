@@ -2,7 +2,6 @@ package br.com.ufrn.bti.desktop.doinhome.views;
 
 import java.util.Date;
 
-import br.com.ufrn.bti.desktop.doinhome.dominio.Pessoa;
 import br.com.ufrn.bti.desktop.doinhome.dominio.Tarefa;
 import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
 import br.com.ufrn.bti.desktop.doinhome.servico.TarefaService;

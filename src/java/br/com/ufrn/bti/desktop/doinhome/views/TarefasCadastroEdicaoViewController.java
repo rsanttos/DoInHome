@@ -1,14 +1,13 @@
 package br.com.ufrn.bti.desktop.doinhome.views;
 
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import br.com.ufrn.bti.desktop.doinhome.dominio.Tarefa;
 import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
 import br.com.ufrn.bti.desktop.doinhome.servico.TarefaService;
 import br.com.ufrn.bti.desktop.doinhome.servico.UsuarioService;
+import br.com.ufrn.bti.desktop.doinhome.thread.ThreadEmail;
 import br.com.ufrn.bti.desktop.doinhome.util.Alerta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +25,7 @@ public class TarefasCadastroEdicaoViewController {
 	private UsuarioService usuarioService = new UsuarioService();
 
 	private Stage stage;
-	
+
 	@FXML
 	private TextField tfTarefaTitulo;
 	@FXML
@@ -69,6 +68,11 @@ public class TarefasCadastroEdicaoViewController {
 			tarefa.setUsuario(cbTarefaResponsavel.getValue());
 			tarefa.setValor(determinaDificuldade());
 			tarefaService.salvarOuAtualizar(tarefa);
+			
+			ThreadEmail email = new ThreadEmail(tarefa.getUsuario().getPessoa().getEmail(),
+					tarefa.getUsuario().getPessoa().getNome(), tarefa.getDescricao(), tarefa.getValor(), tarefa.getDataLimite());
+			email.start();
+
 			tarefa = new Tarefa();
 			Alerta.mostrarAlertaSimples("Cadastro de tarefas", "A tarefa foi cadastrada com sucesso.");
 		} else {

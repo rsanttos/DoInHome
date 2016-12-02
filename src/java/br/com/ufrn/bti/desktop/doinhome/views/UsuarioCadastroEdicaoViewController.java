@@ -30,6 +30,8 @@ public class UsuarioCadastroEdicaoViewController {
 		@FXML
 		private TextField sexoField;
 		@FXML
+		private TextField emailField;
+		@FXML
 		private TextField loginField;
 		@FXML
 		private PasswordField senhaField;
@@ -161,12 +163,12 @@ public class UsuarioCadastroEdicaoViewController {
 			if(validaCampos()){
 				Pessoa pessoa = new Pessoa();
 				Usuario usuario = new Usuario();
-				DateFormat formatter = new SimpleDateFormat("dd/MM/yy");
 				Date dataNascimento = Date.from(dpNascimento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 				pessoa.setCpf(cpfField.getText());
 				pessoa.setNome(nomeField.getText());
 				pessoa.setSexo(sexoComboBox.getValue().charAt(0));
 				pessoa.setDataNascimento(dataNascimento);
+				pessoa.setEmail(emailField.getText());
 				usuario.setLogin(loginField.getText());
 				usuario.setSenha(senhaField.getText());
 				usuario.setPermissao(permissaoComboBox.getValue());			
@@ -190,7 +192,7 @@ public class UsuarioCadastroEdicaoViewController {
 		public boolean validaCampos() {
 			if (cpfField.getText() == null || nomeField.getText() == null || dpNascimento.getValue() == null
 					|| sexoComboBox.getValue() == null || loginField.getText() == null || senhaField.getText() == null 
-					|| permissaoComboBox.getValue() == null){
+					|| permissaoComboBox.getValue() == null || emailField.getText() == null){
 				Alerta.mostrarAlertaSimples("Campos em branco.", "Preencha todos os campos obrigatórios");
 				return false;
 			}

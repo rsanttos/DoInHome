@@ -19,6 +19,7 @@ public class Pessoa {
 	private int id;
 	public String cpf;
 	public String nome;
+	public String email;
 	public Date dataNascimento;
 	public char sexo;
 	
@@ -64,5 +65,14 @@ public class Pessoa {
 
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}	
+	
 }

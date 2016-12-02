@@ -23,7 +23,7 @@ public class UsuarioService {
 	
 	public List<Usuario> listar(){
 		List<Usuario> usuarios = new ArrayList<Usuario>();
-		
+		usuarios = usuarioDao.listar();
 		return usuarios;
 	}
 	

@@ -80,5 +80,9 @@ public class Usuario {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}	
+	@Override
+    public String toString() {
+        return this.getPessoa().getNome();
+    }
 }
 

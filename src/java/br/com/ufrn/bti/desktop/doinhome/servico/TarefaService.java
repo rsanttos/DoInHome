@@ -16,6 +16,12 @@ public class TarefaService {
 		tarefaDao = new TarefaDAO();
 	}
 	
+	public void salvarOuAtualizar(Tarefa tarefa){
+		if(tarefa != null){
+			tarefaDao.salvarOuAtualizar(tarefa);
+		}
+	}
+	
 	public List<Tarefa> listar(){
 		List<Tarefa> tarefas = new ArrayList<Tarefa>();
 		tarefas = tarefaDao.listar();

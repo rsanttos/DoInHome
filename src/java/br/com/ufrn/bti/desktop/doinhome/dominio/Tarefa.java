@@ -143,6 +143,5 @@ public class Tarefa {
 	public void setAtiva(boolean ativa) {
 		this.ativa = ativa;
 	}
-
 	
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="350.0" prefWidth="550.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="350.0" prefWidth="550.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ufrn.bti.desktop.doinhome.views.TarefasCadastroEdicaoViewController">
    <children>
       <Pane layoutX="153.0" layoutY="56.0" prefHeight="268.0" prefWidth="292.0">
          <children>
@@ -19,8 +19,8 @@
             <DatePicker fx:id="dpTarefaPrazoFinal" layoutX="13.0" layoutY="164.0" prefHeight="25.0" prefWidth="250.0" promptText="Prazo final" />
             <ButtonBar layoutX="14.0" layoutY="214.0" prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                  <Button fx:id="btTarefaSalvar" mnemonicParsing="false" text="Salvar" />
-                  <Button fx:id="btTarefaCancelar" mnemonicParsing="false" text="Cancelar" />
+                  <Button fx:id="btTarefaSalvar" mnemonicParsing="false" onAction="#salvarTarefa" text="Salvar" />
+                  <Button fx:id="btTarefaCancelar" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
               </buttons>
             </ButtonBar>
             <ComboBox fx:id="cbTarefaDificuldade" layoutX="13.0" layoutY="122.0" prefHeight="25.0" prefWidth="250.0" promptText="Dificuldade" />

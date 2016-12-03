@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ufrn.bti.desktop.doinhome.views.ContainerController">
@@ -17,8 +18,8 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="meu-ovo">
                            <children>
-                              <Hyperlink layoutX="13.0" layoutY="14.0" text="Ver todos" />
-                              <Hyperlink layoutX="13.0" layoutY="38.0" text="Novo" />
+                              <Hyperlink layoutX="13.0" layoutY="14.0" onMouseClicked="#mostrarListaDeUsuarios" text="Ver todos" />
+                              <Hyperlink layoutX="13.0" layoutY="38.0" onMouseClicked="#mostrarCadastroDeNovoUsuario" text="Novo" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -27,8 +28,9 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="meu-ovo">
                            <children>
-                              <Hyperlink layoutX="13.0" layoutY="14.0" text="Ver todas" />
+                              <Hyperlink fx:id="hlTodasTarefas" layoutX="13.0" layoutY="14.0" onMouseClicked="#mostrarListaDeTarefasDoDia" text="Tarefas do dia" />
                               <Hyperlink fx:id="hlNovaTarefa" layoutX="13.0" layoutY="38.0" onMouseClicked="#mostrarFormularioDeNovaTarefa" text="Nova" />
+                              <Hyperlink fx:id="hlMinhasTarefas" layoutX="13.0" layoutY="62.0" onMouseClicked="#mostrarMinhastarefas" text="Minhas tarefas" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -40,4 +42,7 @@
          </children>
       </VBox>
    </left>
+   <center>
+      <Pane fx:id="conteudo" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>

@@ -21,13 +21,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.util.Callback;
 
 public class TarefasUsuarioListagemViewController {
 	private ObservableList<Tarefa> tarefasList = FXCollections.observableArrayList();
-	private UsuarioService usuarioService = new UsuarioService();
 	private TarefaService tarefaService = new TarefaService();
 	private Usuario usuarioLogado;
 	private ContainerController containerController = new ContainerController();
@@ -84,7 +85,7 @@ public class TarefasUsuarioListagemViewController {
 					public void updateItem(final Tarefa tarefa, boolean empty) {
 						super.updateItem(tarefa, empty);
 						if (tarefa != null) {
-							button.setText("Marcar como feita.");
+							button.setText("Finalizar");
 
 							setGraphic(button);
 							button.setOnAction(new EventHandler<ActionEvent>() {
@@ -96,7 +97,7 @@ public class TarefasUsuarioListagemViewController {
 									Alerta.mostrarAlertaSimples("Pronto!",
 											"Você finalizou a tarefa, seus pontos foram guardados.");
 									try {
-										containerController.mostrarListaTarefasUsuario(usuarioLogado);
+										containerController.mostrarTarefasAbertasDoUsuario();
 									} catch (IOException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
@@ -110,7 +111,22 @@ public class TarefasUsuarioListagemViewController {
 				};
 			}
 		});
+		tvTarefasUsuario.setRowFactory(tv -> {
+		    TableRow<Tarefa> row = new TableRow<>();
+		    row.setOnMouseClicked(event -> {
+		        if (! row.isEmpty() && event.getButton()==MouseButton.PRIMARY 
+		             && event.getClickCount() == 2) {
 
+		            Tarefa tarefaSelecionada = row.getItem();
+		            try {
+						containerController.mostrarTelaDeEdicaoDeTarefa(tarefaSelecionada);;
+					} catch (IOException e) {
+						e.printStackTrace();
+					}		            
+		        }
+		    });
+		    return row ;
+		});
 	}
 
 	public void setContainerController(ContainerController c) {

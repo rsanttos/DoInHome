@@ -194,6 +194,17 @@ public class TarefaDAO extends GenericDAO {
         session.close();
         return soma;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Tarefa> somaPontuacaoTotal(){
+		List<Tarefa> listaTarefas = new ArrayList<Tarefa>();
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        Query q = session.createQuery("SELECT u.login, SUM(t.valor) FROM Tarefa t JOIN t.id_usuario as usuario WHERE t.ativa = false GROUP BY u.login");
+        listaTarefas = q.getResultList();
+        session.close();
+        return listaTarefas;
+	}
 
 	@SuppressWarnings("unchecked")
 	public int somaPontuacaoUsuarioIntervaloTempo(Usuario usuario, Date dataMin, Date dataMax){

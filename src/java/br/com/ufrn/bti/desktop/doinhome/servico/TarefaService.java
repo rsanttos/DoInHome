@@ -7,6 +7,8 @@ import java.util.List;
 import br.com.ufrn.bti.desktop.doinhome.dao.TarefaDAO;
 import br.com.ufrn.bti.desktop.doinhome.dominio.Tarefa;
 import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public class TarefaService {
 	
@@ -172,6 +174,17 @@ public class TarefaService {
 			return soma;
 		} else {
 			return -1;
+		}
+	}
+	
+	public List<Tarefa> ranking(){
+		List<Tarefa> tarefas = new ArrayList<Tarefa>();
+		tarefas = tarefaDao.somaPontuacaoTotal();
+		
+		if(tarefas != null){
+			return tarefas;
+		} else {
+			return null;
 		}
 	}
 	

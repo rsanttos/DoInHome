@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -23,6 +24,7 @@ public class Usuario {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_USUARIO")
 	@SequenceGenerator(name="SEQ_USUARIO", schema = "public", sequenceName="id_usuario", allocationSize=1)
 	private int id;
+	private int pontuacao;
 	private String login;
 	private String senha;
 	private String permissao;
@@ -38,6 +40,7 @@ public class Usuario {
 		super();
 		this.login = login;
 		this.senha = senha;
+		this.pontuacao = 0;
 	}
 	
 	public Usuario(){
@@ -63,6 +66,15 @@ public class Usuario {
 	public StringProperty getLoginProperty() {
 		return new SimpleStringProperty(this.login);
 	}
+	
+	public StringProperty getNomeProperty() {
+		return new SimpleStringProperty(this.pessoa.nome);
+	}
+
+	public ObjectProperty<Integer> getPontuacaoProperty() {
+		return new SimpleIntegerProperty(this.pontuacao).asObject();
+	}
+	
 	
 	public void setLogin(String login) {
 		this.login = login;
@@ -119,5 +131,14 @@ public class Usuario {
     public String toString() {
         return this.getPessoa().getNome();
     }
+
+	public int getPontuacao() {
+		return pontuacao;
+	}
+
+	public void setPontuacao(int pontuacao) {
+		this.pontuacao = pontuacao;
+	}
+	
 }
 

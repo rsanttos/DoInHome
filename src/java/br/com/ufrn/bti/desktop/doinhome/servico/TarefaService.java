@@ -177,17 +177,6 @@ public class TarefaService {
 		}
 	}
 	
-	public List<Tarefa> ranking(){
-		List<Tarefa> tarefas = new ArrayList<Tarefa>();
-		tarefas = tarefaDao.somaPontuacaoTotal();
-		
-		if(tarefas != null){
-			return tarefas;
-		} else {
-			return null;
-		}
-	}
-	
 	public int somaPontuacaoTotalUsuarioIntervaloTempo(Usuario usuario, Date dataMin, Date dataMax){
 		int soma = tarefaDao.somaPontuacaoUsuarioIntervaloTempo(usuario, dataMin, dataMax);
 		

@@ -12,32 +12,34 @@ import javafx.scene.control.TableView;
 
 public class RankingDaCasaController {
 	private ContainerController containerController;
-	private ObservableList<Tarefa> ranking = FXCollections.observableArrayList();
+	private ObservableList<Usuario> ranking = FXCollections.observableArrayList();
 	private TarefaService tarefaService; 
-	
+	private UsuarioService usuarioService;
 	@FXML
-	private TableView<Tarefa> tvUsuarioLista;
+	private TableView<Usuario> tvUsuarioLista;
 	@FXML
-	private TableColumn<Tarefa, String> tcUsuarioNome;
+	private TableColumn<Usuario, String> tcUsuarioNome;
 	@FXML
-	private TableColumn<TarefaService, Integer> tcUsuarioPontuacao;
+	private TableColumn<Usuario, Integer> tcUsuarioPontuacao;
 	
 	public RankingDaCasaController() {
-		tvUsuarioLista = new TableView<Tarefa>();
-		tcUsuarioNome = new TableColumn<Tarefa, String>();
-		tcUsuarioPontuacao = new TableColumn<TarefaService, Integer>();
+		tvUsuarioLista = new TableView<Usuario>();
+		tcUsuarioNome = new TableColumn<Usuario, String>();
+		tcUsuarioPontuacao = new TableColumn<Usuario, Integer>();
 		
 		containerController = new ContainerController();
 		tarefaService = new TarefaService();
+		usuarioService = new UsuarioService();
 	}
 	
 	@FXML
 	private void initialize() {
-		tcUsuarioNome.setCellValueFactory(cellData -> cellData.getValue().getUsuario().getLoginProperty());
+		tcUsuarioNome.setCellValueFactory(cellData -> cellData.getValue().getNomeProperty());
+		tcUsuarioPontuacao.setCellValueFactory(cellData -> cellData.getValue().getPontuacaoProperty());
 	}
 
 	public void populaTabela() {
-		ranking = FXCollections.observableList(tarefaService.ranking());
+		ranking = FXCollections.observableList(usuarioService.ranking());
 	}
 
 	public void setContainerController(ContainerController c) {

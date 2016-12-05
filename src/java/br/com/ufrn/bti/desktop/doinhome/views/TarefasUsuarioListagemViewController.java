@@ -30,6 +30,7 @@ import javafx.util.Callback;
 public class TarefasUsuarioListagemViewController {
 	private ObservableList<Tarefa> tarefasList = FXCollections.observableArrayList();
 	private TarefaService tarefaService = new TarefaService();
+	private UsuarioService usuarioService = new UsuarioService();
 	private Usuario usuarioLogado;
 	private ContainerController containerController = new ContainerController();
 
@@ -94,6 +95,10 @@ public class TarefasUsuarioListagemViewController {
 									tarefa.setAtiva(false);
 									tarefa.setDataFinalizacao(new Date());
 									tarefaService.salvarOuAtualizar(tarefa);
+									int pontuacao = tarefa.getUsuario().getPontuacao();
+									pontuacao += tarefa.getValor();
+									tarefa.getUsuario().setPontuacao(pontuacao);
+									usuarioService.salvarOuAtualizar(tarefa.getUsuario());
 									Alerta.mostrarAlertaSimples("Pronto!",
 											"Você finalizou a tarefa, seus pontos foram guardados.");
 									try {

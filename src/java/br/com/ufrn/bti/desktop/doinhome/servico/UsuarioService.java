@@ -27,6 +27,11 @@ public class UsuarioService {
 		return usuarios;
 	}
 	
+	public List<Usuario> ranking(){
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		usuarios = usuarioDao.ranking();
+		return usuarios;
+	}
 	public Usuario buscarPeloId(Usuario u){
 		Usuario usuario = new Usuario();
 		usuario = usuarioDao.buscarPeloId(u.getId());

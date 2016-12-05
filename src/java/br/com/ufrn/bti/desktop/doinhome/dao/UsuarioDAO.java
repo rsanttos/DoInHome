@@ -21,6 +21,16 @@ public class UsuarioDAO extends GenericDAO {
 		session.close();
 		return listaUsuarios;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Usuario> ranking(){
+		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+		listaUsuarios = session.createQuery("SELECT u FROM Usuario u ORDER BY u.pontuacao DESC").getResultList();
+		session.close();
+		return listaUsuarios;
+	}
 
 	@SuppressWarnings({ "deprecation, rawtypes" })
 	public Usuario buscarPeloId(int id) {

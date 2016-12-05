@@ -1,5 +1,7 @@
 package br.com.ufrn.bti.desktop.doinhome.views;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -45,6 +47,28 @@ public class TarefasCadastroEdicaoViewController {
 
 	public TarefasCadastroEdicaoViewController() {
 		initialize();
+	}
+	
+	public String getDificuldadeTarefa(){
+		switch (tarefa.getValor()) {
+			case 50:
+				return "Fácil";
+			case 75:
+				return "Média";
+			case 100:
+				return "Difícil";
+			default:
+				return "Fácil";
+		}
+	}
+	
+	public void preencherFormulario() {
+		
+		
+		tfTarefaTitulo.setText(tarefa.getDescricao());
+		cbTarefaResponsavel.setValue(tarefa.getUsuario());
+		cbTarefaDificuldade.setValue(this.getDificuldadeTarefa());
+		dpTarefaPrazoFinal.setValue(tarefa.getDataLimite().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 	}
 
 	@FXML

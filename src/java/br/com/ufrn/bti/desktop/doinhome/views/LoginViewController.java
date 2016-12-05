@@ -29,6 +29,8 @@ public class LoginViewController {
 		
 		if(autentica == true){
 			usuario = usuarioService.buscarPeloLogin(usuario);
+			usuarioService.fazerLogoff();
+			usuarioService.setarUsuarioLogado(usuario);
 			ContainerController c = new ContainerController();
 			c.setUsuarioLogado(usuario);
 			c.start(new Stage(), usuario);

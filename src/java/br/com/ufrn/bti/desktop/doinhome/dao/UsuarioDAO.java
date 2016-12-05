@@ -1,5 +1,6 @@
 package br.com.ufrn.bti.desktop.doinhome.dao;
 
+import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,46 @@ public class UsuarioDAO extends GenericDAO {
 		}
 		session.close(); 
 		return usuario;
+	}
+	
+	@SuppressWarnings({ "deprecation, rawtypes" })
+	public Usuario buscarUsuarioLogado() {
+		Usuario usuario = new Usuario();
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Query q = session.createQuery("SELECT u FROM Usuario u WHERE u.logado = :logado");
+		q.setParameter("logado", new Boolean(true));
+		try {
+        	usuario = (Usuario) q.getSingleResult(); 
+        } catch (NoResultException e) {
+        	System.out.println("Nenhum usuário logado no momento...");
+        	usuario = null;
+		}
+		session.close();
+		return usuario;
+	}
+	
+	@SuppressWarnings({ "deprecation, rawtypes" })
+	public void setUsuarioLogado(Usuario u) {
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Query q = session.createQuery("UPDATE Usuario u SET logado = :status where id = :id");
+		q.setParameter("status", new Boolean(true));
+		q.setInteger("id", u.getId());
+		int result = q.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	@SuppressWarnings({ "deprecation, rawtypes" })
+	public void sairDoSistema() {
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Query q = session.createQuery("UPDATE Usuario u SET logado = :status");
+		q.setParameter("status", new Boolean(false));
+		int result = q.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
 	}
 
 	@SuppressWarnings({ "deprecation, rawtypes" })

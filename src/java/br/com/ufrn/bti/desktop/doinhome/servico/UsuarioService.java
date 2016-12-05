@@ -39,6 +39,20 @@ public class UsuarioService {
 		return usuario;
 	}
 	
+	public Usuario buscarUsuarioLogado() {
+		Usuario usuario = new Usuario();
+		usuario = usuarioDao.buscarUsuarioLogado();
+		return usuario;
+	}
+	
+	public void setarUsuarioLogado(Usuario u) {
+		usuarioDao.setUsuarioLogado(u);
+	}
+	
+	public void fazerLogoff() {
+		usuarioDao.sairDoSistema();
+	}
+	
 	public boolean autenticaUsuario(Usuario usuario){
 		Usuario usuarioAux = new Usuario();
 		usuarioAux = usuarioDao.buscarPeloLogin(usuario.getLogin());

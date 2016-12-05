@@ -42,7 +42,7 @@ public class EnviaEmail {
 		props.put("mail.smtp.port", "465");
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("rsanttos22@gmail.com", "foiporvoce2");
+				return new PasswordAuthentication("doinhomeapp@gmail.com", "programacaodesktop");
 			}
 		});
 		/** Ativa Debug para sessão */

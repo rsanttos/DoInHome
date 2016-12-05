@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="350.0" prefWidth="550.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ufrn.bti.desktop.doinhome.views.TarefasGeralDoUsuarioController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Todas as tarefas">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tvTodasTarefas" layoutX="14.0" layoutY="64.0" prefHeight="270.0" prefWidth="521.0">
+        <columns>
+          <TableColumn fx:id="tcTarefaDescricao" prefWidth="315.0" text="Descrição" />
+            <TableColumn fx:id="tcTarefaSituacao" prefWidth="99.0" text="Situação" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

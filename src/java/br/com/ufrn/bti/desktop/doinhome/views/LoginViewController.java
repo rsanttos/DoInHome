@@ -31,9 +31,16 @@ public class LoginViewController {
 			usuario = usuarioService.buscarPeloLogin(usuario);
 			usuarioService.fazerLogoff();
 			usuarioService.setarUsuarioLogado(usuario);
-			ContainerController c = new ContainerController();
-			c.setUsuarioLogado(usuario);
-			c.start(new Stage(), usuario);
+			
+			if(usuario.getPermissao().toLowerCase().equals("admin")) {
+				ContainerController c = new ContainerController();
+				c.setUsuarioLogado(usuario);
+				c.start(new Stage(), usuario);
+			} else {
+				ContainerUsuarioController cu = new ContainerUsuarioController();
+				cu.setUsuarioLogado(usuario);
+				cu.start(new Stage(), usuario);
+			}
 			MainApp.primaryStage.close();
 		} else {
 			Alerta.mostrarAlertaSimples("Login", "Usuário e/ou senha incorretos!");

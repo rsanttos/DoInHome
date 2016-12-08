@@ -1,5 +1,6 @@
 package br.com.ufrn.bti.desktop.doinhome.views;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class UsuarioCadastroEdicaoViewController {
+	private ContainerController containerController = new ContainerController();
 
 		@FXML
 		private TextField nomeField;
@@ -62,6 +64,15 @@ public class UsuarioCadastroEdicaoViewController {
 			usuario = new Usuario();
 			pessoaService = new PessoaService();
 			usuarioService = new UsuarioService();
+		}
+		
+		@FXML
+		public void cancelar() throws IOException {
+			this.mostrarListagemDeUsuarios();
+		}
+		
+		public void mostrarListagemDeUsuarios() throws IOException {
+			this.containerController.mostrarListaDeUsuarios();
 		}
 
 		@FXML
@@ -197,6 +208,13 @@ public class UsuarioCadastroEdicaoViewController {
 				return false;
 			}
 				return true;
+		}
+		
+		public void limparCampos() {
+			cpfField.clear();
+			nomeField.clear();
+			senhaField.clear();
+			emailField.clear();
 		}
 
 		public ObservableList<String> getOpcoesSexoComboBox() {

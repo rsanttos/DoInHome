@@ -18,6 +18,7 @@ public class TarefasGeralDoUsuarioController {
 	private TarefaService tarefaService;
 	private Usuario usuarioLogado;
 	private ContainerController containerController;
+	private ContainerUsuarioController containerUsuarioController;
 	
 	@FXML
 	private TableView<Tarefa> tvTodasTarefas;
@@ -45,6 +46,11 @@ public class TarefasGeralDoUsuarioController {
 	
 	public void setContainerController(ContainerController c) {
 		this.containerController = c;
+		tvTodasTarefas.setItems(tarefasList);
+	}
+	
+	public void setContainerUsuarioController(ContainerUsuarioController c) {
+		this.containerUsuarioController = c;
 		tvTodasTarefas.setItems(tarefasList);
 	}
 	

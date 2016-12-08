@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 
 public class RankingDaCasaController {
 	private ContainerController containerController;
+	private ContainerUsuarioController containerUsuarioController;
 	private ObservableList<Usuario> ranking = FXCollections.observableArrayList();
 	private TarefaService tarefaService; 
 	private UsuarioService usuarioService;
@@ -44,6 +45,11 @@ public class RankingDaCasaController {
 
 	public void setContainerController(ContainerController c) {
 		this.containerController = c;
+		tvUsuarioLista.setItems(ranking);
+	}
+	
+	public void setContainerUsuarioController(ContainerUsuarioController c) {
+		this.containerUsuarioController = c;
 		tvUsuarioLista.setItems(ranking);
 	}
 }

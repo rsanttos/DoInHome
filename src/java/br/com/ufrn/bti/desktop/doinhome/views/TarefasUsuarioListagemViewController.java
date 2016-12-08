@@ -33,6 +33,7 @@ public class TarefasUsuarioListagemViewController {
 	private UsuarioService usuarioService = new UsuarioService();
 	private Usuario usuarioLogado;
 	private ContainerController containerController = new ContainerController();
+	private ContainerUsuarioController containerUsuarioController = new ContainerUsuarioController();
 
 	@FXML
 	private TableView<Tarefa> tvTarefasUsuario;
@@ -138,6 +139,11 @@ public class TarefasUsuarioListagemViewController {
 
 	public void setContainerController(ContainerController c) {
 		this.containerController = c;
+		tvTarefasUsuario.setItems(tarefasList);
+	}
+	
+	public void setContainerUsuarioController(ContainerUsuarioController c) {
+		this.containerUsuarioController = c;
 		tvTarefasUsuario.setItems(tarefasList);
 	}
 

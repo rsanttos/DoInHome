@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ufrn.bti.desktop.doinhome.views.ContainerUsuarioController">
+   <left>
+      <VBox prefHeight="400.0" prefWidth="135.0" BorderPane.alignment="CENTER">
+         <children>
+            <Accordion>
+              <panes>
+                <TitledPane styleClass="sub-list" text="Tarefas">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="meu-ovo">
+                           <children>
+                              <Hyperlink fx:id="hlTodasTarefas" layoutX="13.0" layoutY="14.0" onMouseClicked="#mostrarTodasTarefasDoUsuario" text="Todas as tarefas" />
+                              <Hyperlink fx:id="hlMinhasTarefas" layoutX="13.0" layoutY="42.0" onMouseClicked="#mostrarTarefasAbertasDoUsuario" text="Tarefas abertas" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </TitledPane>
+              </panes>
+            </Accordion>
+            <Hyperlink fx:id="hlRanking" onMouseClicked="#mostrarRankingDaCasa" text="Ranking da casa" />
+            <Hyperlink text="Meu rendimento" visible="false" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <Pane fx:id="conteudo" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="235.0" layoutY="179.0" text="DoInHome">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="128.0" layoutY="200.0" text="Sistema de Gerenciamento das Tarefas domesticas">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+         </children></Pane>
+   </center>
+</BorderPane>

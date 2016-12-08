@@ -118,18 +118,20 @@ public class TarefasUsuarioListagemViewController {
 		});
 		tvTarefasUsuario.setRowFactory(tv -> {
 		    TableRow<Tarefa> row = new TableRow<>();
-		    row.setOnMouseClicked(event -> {
-		        if (! row.isEmpty() && event.getButton()==MouseButton.PRIMARY 
-		             && event.getClickCount() == 2) {
-
-		            Tarefa tarefaSelecionada = row.getItem();
-		            try {
-						containerController.mostrarTelaDeEdicaoDeTarefa(tarefaSelecionada);;
-					} catch (IOException e) {
-						e.printStackTrace();
-					}		            
-		        }
-		    });
+		    if (usuarioLogado.getPermissao().toLowerCase().equals("admin")) {
+			    row.setOnMouseClicked(event -> {
+			        if (! row.isEmpty() && event.getButton()==MouseButton.PRIMARY 
+			             && event.getClickCount() == 2) {
+	
+			            Tarefa tarefaSelecionada = row.getItem();
+			            try {
+							containerController.mostrarTelaDeEdicaoDeTarefa(tarefaSelecionada);;
+						} catch (IOException e) {
+							e.printStackTrace();
+						}		            
+			        }
+			    });
+		    }
 		    return row ;
 		});
 	}

@@ -1,9 +1,11 @@
 package br.com.ufrn.bti.desktop.doinhome.views;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.ResourceBundle.Control;
 
 import br.com.ufrn.bti.desktop.doinhome.dominio.Tarefa;
 import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
@@ -25,6 +27,7 @@ public class TarefasCadastroEdicaoViewController {
 	private Tarefa tarefa;
 	private TarefaService tarefaService = new TarefaService();
 	private UsuarioService usuarioService = new UsuarioService();
+	private ContainerController containerController = new ContainerController();
 
 	private Stage stage;
 
@@ -63,8 +66,6 @@ public class TarefasCadastroEdicaoViewController {
 	}
 	
 	public void preencherFormulario() {
-		
-		
 		tfTarefaTitulo.setText(tarefa.getDescricao());
 		cbTarefaResponsavel.setValue(tarefa.getUsuario());
 		cbTarefaDificuldade.setValue(this.getDificuldadeTarefa());
@@ -81,7 +82,7 @@ public class TarefasCadastroEdicaoViewController {
 	}
 
 	@FXML
-	public void salvarTarefa() {
+	public void salvarTarefa() throws IOException {
 		if (validaCampos()) {
 			tarefa.setAtiva(true);
 			tarefa.setDataCriacao(new Date());
@@ -99,14 +100,19 @@ public class TarefasCadastroEdicaoViewController {
 
 			tarefa = new Tarefa();
 			Alerta.mostrarAlertaSimples("Cadastro de tarefas", "A tarefa foi cadastrada com sucesso.");
+			this.mostrarListagemDeTarefas();
 		} else {
 			Alerta.mostrarAlertaSimples("Cadastro de tarefas", "Você precisa informar todos os campos.");
 		}
 	}
 
 	@FXML
-	public void cancelar() {
-		stage.close();
+	public void cancelar() throws IOException {
+		this.mostrarListagemDeTarefas();
+	}
+	
+	public void mostrarListagemDeTarefas() throws IOException {
+		this.containerController.mostrarTarefasAbertasDoUsuario();
 	}
 
 	public int determinaDificuldade() {
@@ -132,6 +138,14 @@ public class TarefasCadastroEdicaoViewController {
 			return false;
 		}
 		return true;
+	}
+	
+	public void setContainerController(ContainerController c) {
+		this.containerController = c;
+	}
+	
+	public ContainerController getContainerController() {
+		return this.containerController;
 	}
 
 	public Tarefa getTarefa() {

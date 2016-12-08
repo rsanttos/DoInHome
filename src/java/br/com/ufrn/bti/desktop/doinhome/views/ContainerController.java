@@ -5,7 +5,6 @@ import java.io.IOException;
 import br.com.ufrn.bti.desktop.doinhome.dominio.Tarefa;
 import br.com.ufrn.bti.desktop.doinhome.dominio.Usuario;
 import br.com.ufrn.bti.desktop.doinhome.servico.UsuarioService;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -73,7 +72,8 @@ public class ContainerController {
 		
 		TarefasCadastroEdicaoViewController tController = loader.getController();
 		tController.setTarefa(t);
-		tController.preencherFormulario();		
+		tController.preencherFormulario();	
+		tController.setContainerController(this);
 	}
 	
 	@FXML
@@ -82,6 +82,9 @@ public class ContainerController {
         loader.setLocation(ContainerController.class.getResource("TarefasCadastroEdicao.fxml"));
         this.conteudo.getChildren().clear();
         this.conteudo.getChildren().add((AnchorPane) loader.load());
+        
+        TarefasCadastroEdicaoViewController tController = loader.getController();
+		tController.setContainerController(this);
 	}
 	
 	@FXML
